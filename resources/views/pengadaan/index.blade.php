@@ -52,7 +52,7 @@
               <td class="align-middle text-end">Rp{{ number_format($p->total_nilai,0,',','.') }}</td>
               <td class="align-middle text-center">{{ $p->username }}</td>
               <td class="align-middle text-center">
-                <a href="{{ url('/pengadaan/'.$p->idpengadaan) }}" class="btn btn-sm btn-primary">Lihat Detail</a>
+                <a href="{{route('pengadaan.show')  $p->idpengadaan }}" class="btn btn-sm btn-primary">Lihat Detail</a>
               </td>
             </tr>
           @empty

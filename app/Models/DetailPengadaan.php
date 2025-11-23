@@ -29,4 +29,17 @@ class DetailPengadaan extends Model
         ";
         return DB::select($sql, [$idpengadaan]);
     }
+
+    // ✨ INSERT DETAIL PENGADAAN
+    public static function addItem($idpengadaan, $idbarang, $jumlah, $harga_satuan)
+    {
+        $sub_total = $jumlah * $harga_satuan;
+        
+        $sql = "
+            INSERT INTO detail_pengadaan (idpengadaan, idbarang, jumlah, harga_satuan, sub_total)
+            VALUES (?, ?, ?, ?, ?)
+        ";
+        
+        return DB::insert($sql, [$idpengadaan, $idbarang, $jumlah, $harga_satuan, $sub_total]);
+    }
 }

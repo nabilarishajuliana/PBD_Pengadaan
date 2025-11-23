@@ -22,4 +22,6 @@ class vendorcontroller extends Controller
         $mode = 'all';
         return view('vendor.index', compact('vendor', 'mode'));
     }
+
+    
 }

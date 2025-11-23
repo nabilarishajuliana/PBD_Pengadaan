@@ -76,101 +76,27 @@
   </style>
 </head>
 <body>
-@include('components.navbar')
 
 <div class="container">
   <div class="dashboard-header">
-    <h1>PBD App Dashboard</h1>
-    <h5>Selamat datang, <strong>admin 👑</strong></h5>
+    <h1>home</h1>
   </div>
 
-  <div class="dashboard-grid">
-    <!-- MASTER DATA -->
-    <a href="{{ url('/barang') }}" class="text-decoration-none text-dark">
-      <div class="dashboard-card">
-        <div class="dashboard-icon">🧺</div>
-        <h4>Barang</h4>
-        <p>Kelola data barang</p>
-      </div>
-    </a>
 
-    <a href="{{ url('/vendor') }}" class="text-decoration-none text-dark">
-      <div class="dashboard-card">
-        <div class="dashboard-icon">🏢</div>
-        <h4>Vendor</h4>
-        <p>Data supplier & rekanan</p>
-      </div>
-    </a>
 
-    <a href="{{ url('/margin') }}" class="text-decoration-none text-dark">
-      <div class="dashboard-card">
-        <div class="dashboard-icon">💰</div>
-        <h4>Margin Penjualan</h4>
-        <p>Persentase keuntungan</p>
-      </div>
-    </a>
-
-    <a href="{{ url('/satuan') }}" class="text-decoration-none text-dark">
-      <div class="dashboard-card">
-        <div class="dashboard-icon">⚖️</div>
-        <h4>Satuan</h4>
-        <p>Unit pengukuran barang</p>
-      </div>
-    </a>
-
-    <a href="{{ url('/role') }}" class="text-decoration-none text-dark">
+    <a href="{{ url('/login') }}" class="text-decoration-none text-dark">
       <div class="dashboard-card">
         <div class="dashboard-icon">👥</div>
-        <h4>Role</h4>
-        <p>Jenis pengguna</p>
+        <h4>Login</h4>
       </div>
     </a>
 
-    <a href="{{ url('/user') }}" class="text-decoration-none text-dark">
-      <div class="dashboard-card">
-        <div class="dashboard-icon">🙋‍♀️</div>
-        <h4>User</h4>
-        <p>Daftar pengguna sistem</p>
-      </div>
-    </a>
-
-    <!-- TRANSAKSI -->
-    <a href="{{ url('/pengadaan') }}" class="text-decoration-none text-dark">
-      <div class="dashboard-card">
-        <div class="dashboard-icon">📦</div>
-        <h4>Pengadaan</h4>
-        <p>Data pembelian barang</p>
-      </div>
-    </a>
-
-    <a href="{{ url('/penerimaan') }}" class="text-decoration-none text-dark">
-      <div class="dashboard-card">
-        <div class="dashboard-icon">📥</div>
-        <h4>Penerimaan</h4>
-        <p>Data penerimaan barang</p>
-      </div>
-    </a>
-
-    <a href="{{ url('/penjualan') }}" class="text-decoration-none text-dark">
-      <div class="dashboard-card">
-        <div class="dashboard-icon">💸</div>
-        <h4>Penjualan</h4>
-        <p>Data transaksi penjualan</p>
-      </div>
-    </a>
-
-    <a href="{{ url('/retur') }}" class="text-decoration-none text-dark">
-      <div class="dashboard-card">
-        <div class="dashboard-icon">📤</div>
-        <h4>Retur</h4>
-        <p>Pengembalian barang ke vendor</p>
-      </div>
-    </a>
+    
   </div>
 
-  <footer>
+  <!-- <footer>
     <p>&copy; {{ date('Y') }} <span>PBD App</span> | Simple Elegant UI by Princess 👑</p>
-  </footer>
+  </footer> -->
 </div>
 </body>
 </html>
