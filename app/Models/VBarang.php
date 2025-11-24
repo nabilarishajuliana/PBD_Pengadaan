@@ -13,7 +13,7 @@ class VBarang extends Model
     // Barang aktif saja
     public static function getBarangAktif()
     {
-        $sql = "SELECT idbarang, nama_barang, nama_satuan, harga, status 
+        $sql = "SELECT idbarang, nama_barang, nama_satuan, harga,jenis, status 
                 FROM v_barang 
                 WHERE status = 1";
         return DB::select($sql);
@@ -22,7 +22,7 @@ class VBarang extends Model
     // Semua barang (aktif dan nonaktif)
     public static function getBarangAll()
     {
-        $sql = "SELECT idbarang, nama_barang, nama_satuan, harga, status 
+        $sql = "SELECT idbarang, nama_barang, nama_satuan, harga,jenis, status 
                 FROM v_barang_all";
         return DB::select($sql);
     }

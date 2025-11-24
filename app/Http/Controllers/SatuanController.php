@@ -11,7 +11,7 @@ class SatuanController extends Controller
     {
         $satuan = VSatuan::getSatuanAktif();
         $mode = 'aktif';
-        return view('satuan.index', compact('satuan', 'mode'));
+        return view('superadmin.satuan.index', compact('satuan', 'mode'));
     }
 
     // Menampilkan semua satuan
@@ -19,6 +19,6 @@ class SatuanController extends Controller
     {
         $satuan = VSatuan::getSatuanAll();
         $mode = 'all';
-        return view('satuan.index', compact('satuan', 'mode'));
+        return view('superadmin.satuan.index', compact('satuan', 'mode'));
     }
 }

@@ -12,7 +12,7 @@ class VBarangController extends Controller
     {
         $barang = VBarang::getBarangAktif();
         $mode = 'aktif';
-        return view('barang.index', compact('barang', 'mode'));
+        return view('superadmin.barang.index', compact('barang', 'mode'));
     }
 
     // Semua barang
@@ -20,6 +20,6 @@ class VBarangController extends Controller
     {
         $barang = VBarang::getBarangAll();
         $mode = 'all';
-        return view('barang.index', compact('barang', 'mode'));
+        return view('superadmin.barang.index', compact('barang', 'mode'));
     }
 }

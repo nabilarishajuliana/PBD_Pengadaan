@@ -14,6 +14,8 @@ use App\Http\Controllers\PengadaanController;
 use App\Http\Controllers\PenerimaanController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ReturController;
+use App\Http\Controllers\KartuStokController;
+
 
 
 // Route::get('/', function () {
@@ -92,7 +94,7 @@ Route::middleware(['auth.custom', 'role:superAdmin'])
     ->group(function () {
 
         // Dashboard
-        Route::get('/dashboard', [DashboardController::class, 'superAdmin'])->name('dashboard');
+        Route::get('/', [DashboardController::class, 'superAdmin'])->name('dashboard');
 
         // === MASTER DATA ===
         Route::controller(vBarangController::class)->group(function () {
@@ -141,9 +143,16 @@ Route::middleware(['auth.custom', 'role:superAdmin'])
             Route::post('/penjualan/calculate-price', 'calculatePrice')->name('penjualan.calculatePrice'); // ✨ AJAX
             Route::get('/penjualan/{id}', 'show')->whereNumber('id')->name('penjualan.show');
         });
+
         Route::controller(ReturController::class)->group(function () {
             Route::get('/retur', 'index')->name('retur');
             Route::get('/retur/{id}', 'show')->whereNumber('id')->name('retur.show');
+        });
+
+        Route::controller(KartuStokController::class)->group(function () {
+            Route::get('/kartustok', 'index')->name('kartustok'); // List dengan filter
+            Route::get('/kartustok/rekap', 'rekap')->name('kartustok.rekap'); // Rekap stok per barang
+            Route::get('/kartustok/detail/{idbarang}', 'detail')->whereNumber('idbarang')->name('kartustok.detail'); // Detail per barang
         });
     });
 

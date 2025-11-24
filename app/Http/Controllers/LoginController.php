@@ -13,13 +13,18 @@ class LoginController extends Controller
         //     return redirect()->route('login');
         // }
 
+
+        if (session()->has('role')) {
+       if (session('role') === 'superAdmin') {
+            return redirect()->route('superadmin.dashboard');
+        } elseif (session('role') === 'admin') {
+            return redirect()->route('admin.dashboard');
+        }
+        }
+
         // $role = session('role');
 
-        // if ($role === 'superAdmin') {
-        //     return redirect()->route('superadmin.dashboard');
-        // } elseif ($role === 'admin') {
-        //     return redirect()->route('admin.dashboard');
-        // }
+       
         
         return view('login');
     }
@@ -62,7 +67,7 @@ class LoginController extends Controller
 
         // redirect sesuai role
         if ($roleName === 'superAdmin') {
-            return redirect('/superadmin/dashboard');
+            return redirect('/superadmin');
         }
 
         return redirect('/admin/dashboard');

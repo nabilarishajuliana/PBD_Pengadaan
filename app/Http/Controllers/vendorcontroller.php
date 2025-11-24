@@ -12,7 +12,7 @@ class vendorcontroller extends Controller
     {
         $vendor = VVendor::getVendorAktif();
         $mode = 'aktif';
-        return view('vendor.index', compact('vendor', 'mode'));
+        return view('superadmin.vendor.index', compact('vendor', 'mode'));
     }
 
     // Semua vendor
@@ -20,7 +20,7 @@ class vendorcontroller extends Controller
     {
         $vendor = VVendor::getVendorAll();
         $mode = 'all';
-        return view('vendor.index', compact('vendor', 'mode'));
+        return view('superadmin.vendor.index', compact('vendor', 'mode'));
     }
 
     

@@ -1,94 +1,131 @@
-<nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #ffffff;">
-  <div class="container">
-    <a class="navbar-brand fw-semibold" href="{{ url('/') }}" style="color:#2a2a2a; font-size:1.3rem;">
-      🌿 PBD App
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container-fluid">
+    <!-- BRAND -->
+    <a class="navbar-brand fw-bold" href="{{ route('superadmin.dashboard') }}">
+      🏪 PBD Inventory
     </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <!-- TOGGLE BUTTON (Mobile) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav align-items-center">
+    <!-- MENU -->
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
         <!-- Dashboard -->
         <li class="nav-item">
-          <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ url('/') }}">
-            🏠 Dashboard
+          <a class="nav-link {{ request()->routeIs('superadmin.dashboard') ? 'active' : '' }}"
+            href="{{ route('superadmin.dashboard') }}">
+            Dashboard
           </a>
         </li>
 
-        <!-- Data Master -->
+        <!-- Master Data -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {{ request()->is('barang*','vendor*','margin*','satuan*','role*','user*') ? 'active' : '' }}" 
-             href="#" id="masterDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            🧾 Data Master
+          <a class="nav-link dropdown-toggle {{ request()->is('superadmin/barang*') || request()->is('superadmin/vendor*') || request()->is('superadmin/satuan*') || request()->is('superadmin/margin*') || request()->is('superadmin/user*') || request()->is('superadmin/role*') ? 'active' : '' }}"
+            href="#" role="button" data-bs-toggle="dropdown">
+            Master Data
           </a>
-          <ul class="dropdown-menu shadow-sm border-0 rounded-3">
-            <li><a class="dropdown-item" href="{{ url('/barang') }}">🧺 Barang</a></li>
-            <li><a class="dropdown-item" href="{{ url('/vendor') }}">🏢 Vendor</a></li>
-            <li><a class="dropdown-item" href="{{ url('/margin') }}">💰 Margin Penjualan</a></li>
-            <li><a class="dropdown-item" href="{{ url('/satuan') }}">⚖️ Satuan</a></li>
-            <li><a class="dropdown-item" href="{{ url('/role') }}">👥 Role</a></li>
-            <li><a class="dropdown-item" href="{{ url('/user') }}">🙋‍♀️ User</a></li>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ route('superadmin.barang') }}">📦 Barang</a></li>
+            <li><a class="dropdown-item" href="{{ route('superadmin.vendor') }}">🏢 Vendor</a></li>
+            <li><a class="dropdown-item" href="{{ route('superadmin.satuan') }}">📏 Satuan</a></li>
+            <li><a class="dropdown-item" href="{{ route('superadmin.margin') }}">📊 Margin</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="{{ route('superadmin.user') }}">👥 User</a></li>
+            <li><a class="dropdown-item" href="{{ route('superadmin.role') }}">🔐 Role</a></li>
           </ul>
         </li>
 
         <!-- Transaksi -->
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle {{ request()->is('pengadaan*','penerimaan*','penjualan*','retur*') ? 'active' : '' }}" 
-             href="#" id="transaksiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            💼 Transaksi
+          <a class="nav-link dropdown-toggle {{ request()->is('superadmin/pengadaan*') || request()->is('superadmin/penerimaan*') || request()->is('superadmin/penjualan*') || request()->is('superadmin/retur*') ? 'active' : '' }}"
+            href="#" role="button" data-bs-toggle="dropdown">
+            Transaksi
           </a>
-          <ul class="dropdown-menu shadow-sm border-0 rounded-3">
-            <li><a class="dropdown-item" href="{{ url('/pengadaan') }}">📦 Pengadaan</a></li>
-            <li><a class="dropdown-item" href="{{ url('/penerimaan') }}">📥 Penerimaan</a></li>
-            <li><a class="dropdown-item" href="{{ url('/penjualan') }}">💸 Penjualan</a></li>
-            <li><a class="dropdown-item" href="{{ url('/retur') }}">📤 Retur</a></li>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ route('superadmin.pengadaan') }}">🛒 Pengadaan</a></li>
+            <li><a class="dropdown-item" href="{{ route('superadmin.penerimaan') }}">📦 Penerimaan</a></li>
+            <li><a class="dropdown-item" href="{{ route('superadmin.penjualan') }}">💰 Penjualan</a></li>
+            <li><a class="dropdown-item" href="{{ route('superadmin.retur') }}">↩️ Retur</a></li>
           </ul>
         </li>
 
+        <li class="nav-item">
+          <a class="nav-link {{ request()->routeIs('superadmin.kartustok') ? 'active' : '' }}"
+            href="{{ route('superadmin.kartustok') }}">
+            kartu stok
+          </a>
+        </li>
+
+      </ul>
+
+      <!-- User Info & Logout -->
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+            👤 {{ session('username', 'User') }}
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item disabled">Role: {{ session('nama_role', 'Admin') }}</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item text-danger" href="{{ route('logout') }}">🚪 Logout</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 <style>
+  /* Simple Navbar Styling */
   .navbar {
-      font-family:'Poppins',sans-serif;
-      font-size:15px;
-      backdrop-filter:blur(8px);
+    padding: 0.75rem 1rem;
   }
-  .nav-link {
-      color:#2f3640;
-      font-weight:500;
-      transition:all .2s ease;
-      padding:8px 14px;
-      border-radius:10px;
+
+  .navbar-brand {
+    font-size: 1.25rem;
   }
-  .nav-link:hover {
-      color:#1a73e8;
-      background:rgba(26,115,232,0.05);
+
+  .navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+    margin: 0 0.2rem;
+    border-radius: 5px;
+    transition: background 0.2s;
   }
-  .nav-link.active {
-      color:#1a73e8;
-      background:rgba(26,115,232,0.12);
-      font-weight:600;
+
+  .navbar-nav .nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
+
+  .navbar-nav .nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+  }
+
   .dropdown-menu {
-      font-size:14px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
+
   .dropdown-item {
-      color:#2f3640;
-      border-radius:6px;
-      padding:8px 15px;
+    padding: 0.5rem 1rem;
+    transition: background 0.2s;
   }
+
   .dropdown-item:hover {
-      background:#f5f7fa;
-      color:#1a73e8;
+    background: #f8f9fa;
+  }
+
+  @media (max-width: 991px) {
+    .navbar-nav {
+      padding-top: 0.5rem;
+    }
   }
 </style>

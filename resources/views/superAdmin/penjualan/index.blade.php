@@ -32,7 +32,9 @@
     </div>
   @endif
 
-
+<div class="mb-3 text-end">
+    <a href="{{ route('superadmin.penjualan.create') }}" class="btn btn-primary">➕ Buat Penjualan Baru</a>
+</div>
 
   <div class="card shadow-sm">
     <div class="card-body p-0">

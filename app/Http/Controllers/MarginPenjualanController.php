@@ -11,7 +11,7 @@ class MarginPenjualanController extends Controller
     {
         $margin = VMarginPenjualan::getMarginAktif();
         $mode = 'aktif';
-        return view('margin.index', compact('margin', 'mode'));
+        return view('superadmin.margin.index', compact('margin', 'mode'));
     }
 
     // Menampilkan semua margin
@@ -19,6 +19,6 @@ class MarginPenjualanController extends Controller
     {
         $margin = VMarginPenjualan::getMarginAll();
         $mode = 'all';
-        return view('margin.index', compact('margin', 'mode'));
+        return view('superadmin.margin.index', compact('margin', 'mode'));
     }
 }

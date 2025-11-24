@@ -33,7 +33,7 @@
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg shadow-sm">
+<!-- <nav class="navbar navbar-expand-lg shadow-sm">
     <div class="container">
         <a class="navbar-brand fw-bold text-primary" href="{{ url('/') }}">
             🌸 PBD App
@@ -57,7 +57,9 @@
             </ul>
         </div>
     </div>
-</nav>
+</nav> -->
+    @include('components.navbar')
+
 
 <!-- Page Content -->
 <div class="container py-4">

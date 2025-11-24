@@ -107,5 +107,14 @@
         </a>
     </div>
 
+    <div class="col-md-4">
+        <a href="{{ route('superadmin.kartustok') }}" class="text-decoration-none text-dark">
+            <div class="p-4 shadow-sm dashboard-card bg-white">
+                <h4 class="text-primary">Kartu Stok</h4>
+                <p>Lihat kartu stok</p>
+            </div>
+        </a>
+    </div>
+
 </div>
 @endsection

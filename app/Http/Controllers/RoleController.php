@@ -9,6 +9,6 @@ class RoleController extends Controller
     public function index()
     {
         $role = VRole::getAllRole();
-        return view('role.index', compact('role'));
+        return view('superadmin.role.index', compact('role'));
     }
 }
