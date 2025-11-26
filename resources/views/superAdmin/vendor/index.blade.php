@@ -100,11 +100,20 @@
                                 </td>
                                 <td class="text-center align-middle">
                                     @if($v->status == 'A')
-                                    <span class="badge bg-success">✅ Aktif</span>
+                                    <span class="badge bg-success">Aktif</span><br>
+                                    <a href="{{ route('superadmin.vendor.toggle', $v->idvendor) }}"
+                                        class="btn btn-sm btn-outline-danger mt-1">
+                                        ❌ Nonaktifkan
+                                    </a>
                                     @else
-                                    <span class="badge bg-secondary">❌ Nonaktif</span>
+                                    <span class="badge bg-secondary">Nonaktif</span><br>
+                                    <a href="{{ route('superadmin.vendor.toggle', $v->idvendor) }}"
+                                        class="btn btn-sm btn-outline-success mt-1">
+                                        ✔ Aktifkan
+                                    </a>
                                     @endif
                                 </td>
+
 
                             </tr>
                             @empty

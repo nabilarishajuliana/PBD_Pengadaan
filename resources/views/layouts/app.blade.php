@@ -4,67 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PBD App - @yield('title')</title>
-
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <style>
         body {
-            background: #f5f7fb;
+            /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+            min-height: 100vh;
             font-family: "Poppins", sans-serif;
+            background: #f7f9fb;
+
         }
-        .navbar {
-            background: white;
-        }
-        .card {
-            border-radius: 14px;
+        .main-content {
+            background: #f7f9fb;
+            min-height: calc(100vh - 60px);
+            margin-top: 60px;
+            padding: 2rem 0;
         }
         .dashboard-card {
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
             border-radius: 15px;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        .dashboard-card:hover::before {
+            left: 100%;
         }
         .dashboard-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        .dashboard-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+        .dashboard-card p {
+            color: #6c757d;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
     </style>
+    @stack('styles')
 </head>
 <body>
 
-<!-- Navbar -->
-<!-- <nav class="navbar navbar-expand-lg shadow-sm">
+@include('components.navbar')
+
+<div class="main-content">
     <div class="container">
-        <a class="navbar-brand fw-bold text-primary" href="{{ url('/') }}">
-            🌸 PBD App
-        </a>
-
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto align-items-center">
-
-                <li class="nav-item me-3">
-                    <span class="text-secondary">
-                        Hi, <strong>{{ session('username') }}</strong>
-                        ({{ session('role') }})
-                    </span>
-                </li>
-
-                <li class="nav-item">
-                    <a href="{{ route('logout') }}" class="btn btn-outline-danger btn-sm">
-                        Logout
-                    </a>
-                </li>
-            </ul>
-        </div>
+        @yield('content')
     </div>
-</nav> -->
-    @include('components.navbar')
-
-
-<!-- Page Content -->
-<div class="container py-4">
-    @yield('content')
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@stack('scripts')
 </body>
 </html>

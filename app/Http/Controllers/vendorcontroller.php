@@ -23,5 +23,23 @@ class vendorcontroller extends Controller
         return view('superadmin.vendor.index', compact('vendor', 'mode'));
     }
 
-    
+    public function toggleStatus($id)
+{
+    // 1. Ambil data vendor dari tabel asli via model
+    $vendor = VVendor::getVendorById($id);
+
+    if (!$vendor) {
+        return back()->with('error', 'Vendor tidak ditemukan.');
+    }
+
+    // 2. Flip status: A => N, N => A
+    $newStatus = $vendor->status === 'A' ? 'N' : 'A';
+
+    // 3. Update status
+    VVendor::updateStatus($id, $newStatus);
+
+    // 4. Redirect balik
+    return back()->with('success', 'Status vendor berhasil diperbarui.');
+}
+
 }

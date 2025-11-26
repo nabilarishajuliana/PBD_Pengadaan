@@ -3,48 +3,54 @@
 @section('title', 'Admin Dashboard')
 
 @section('content')
+
 <div class="text-center mb-4">
-    <h2 class="fw-bold text-primary">📦 Admin Dashboard</h2>
-    <p class="text-muted">Anda hanya dapat mengelola transaksi</p>
+    <h2 class="fw-bold text-primary">🧑‍💼 Admin Dashboard</h2>
+    <p class="text-muted">Anda hanya dapat mengelola transaksi harian</p>
 </div>
 
-<div class="row g-4">
+<div class="row g-4 justify-content-center">
 
-    <div class="col-md-4">
-        <a href="{{ route('admin.pengadaan') }}" class="text-decoration-none text-dark">
-            <div class="p-4 shadow-sm dashboard-card bg-white">
-                <h4 class="text-primary">📦 Pengadaan</h4>
-                <p>Transaksi pembelian barang</p>
+    <!-- Pengadaan -->
+    <div class="col-md-5 col-lg-3">
+        <a href="{{ route('admin.pengadaan') }}" class="text-decoration-none">
+            <div class="p-4 bg-white shadow-sm dashboard-card rounded-4 text-center">
+                <h4 class="text-primary mb-1">📦 Pengadaan</h4>
+                <small class="text-muted">Transaksi pembelian barang</small>
             </div>
         </a>
     </div>
 
-    <div class="col-md-4">
-        <a href="{{ route('admin.penerimaan') }}" class="text-decoration-none text-dark">
-            <div class="p-4 shadow-sm dashboard-card bg-white">
-                <h4 class="text-primary">📥 Penerimaan</h4>
-                <p>Barang yang diterima</p>
+    <!-- Penerimaan -->
+    <div class="col-md-5 col-lg-3">
+        <a href="{{ route('admin.penerimaan') }}" class="text-decoration-none">
+            <div class="p-4 bg-white shadow-sm dashboard-card rounded-4 text-center">
+                <h4 class="text-primary mb-1">📥 Penerimaan</h4>
+                <small class="text-muted">Barang yang diterima</small>
             </div>
         </a>
     </div>
 
-    <div class="col-md-4">
-        <a href="{{ route('admin.penjualan') }}" class="text-decoration-none text-dark">
-            <div class="p-4 shadow-sm dashboard-card bg-white">
-                <h4 class="text-primary">💸 Penjualan</h4>
-                <p>Transaksi penjualan barang</p>
+    <!-- Penjualan -->
+    <div class="col-md-5 col-lg-3">
+        <a href="{{ route('admin.penjualan') }}" class="text-decoration-none">
+            <div class="p-4 bg-white shadow-sm dashboard-card rounded-4 text-center">
+                <h4 class="text-primary mb-1">💸 Penjualan</h4>
+                <small class="text-muted">Transaksi penjualan barang</small>
             </div>
         </a>
     </div>
 
-    <div class="col-md-4">
-        <a href="{{ route('admin.retur') }}" class="text-decoration-none text-dark">
-            <div class="p-4 shadow-sm dashboard-card bg-white">
-                <h4 class="text-primary">↩️ Retur</h4>
-                <p>Retur barang ke vendor</p>
+    <!-- Retur -->
+    <div class="col-md-5 col-lg-3">
+        <a href="{{ route('admin.retur') }}" class="text-decoration-none">
+            <div class="p-4 bg-white shadow-sm dashboard-card rounded-4 text-center">
+                <h4 class="text-primary mb-1">↩️ Retur</h4>
+                <small class="text-muted">Retur barang ke vendor</small>
             </div>
         </a>
     </div>
 
 </div>
+
 @endsection

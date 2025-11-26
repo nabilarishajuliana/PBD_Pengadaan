@@ -38,25 +38,25 @@ class KartuStokController extends Controller
     }
 
     // ✨ Tampilkan stok akhir per barang (rekap)
-    public function rekap()
-    {
-        $stok_barang = KartuStok::getStokAkhirPerBarang();
+    // public function rekap()
+    // {
+    //     $stok_barang = KartuStok::getStokAkhirPerBarang();
 
-        return view('superadmin.kartustok.rekap', compact('stok_barang'));
-    }
+    //     return view('superadmin.kartustok.rekap', compact('stok_barang'));
+    // }
 
-    // ✨ Tampilkan detail kartu stok per barang
-    public function detail($idbarang)
-    {
-        $barang = KartuStok::getBarangDetail($idbarang);
+    // // ✨ Tampilkan detail kartu stok per barang
+    // public function detail($idbarang)
+    // {
+    //     $barang = KartuStok::getBarangDetail($idbarang);
 
-        if (!$barang) {
-            return redirect()->route('superadmin.kartustok.rekap')
-                ->with('error', 'Barang tidak ditemukan.');
-        }
+    //     if (!$barang) {
+    //         return redirect()->route('superadmin.kartustok.rekap')
+    //             ->with('error', 'Barang tidak ditemukan.');
+    //     }
 
-        $kartu_stok = KartuStok::getKartuStokByBarang($idbarang);
+    //     $kartu_stok = KartuStok::getKartuStokByBarang($idbarang);
 
-        return view('superadmin.kartustok.detail', compact('barang', 'kartu_stok'));
-    }
+    //     return view('superadmin.kartustok.detail', compact('barang', 'kartu_stok'));
+    // }
 }

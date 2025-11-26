@@ -23,4 +23,19 @@ class VVendor extends Model
         $sql = "SELECT idvendor, nama_vendor, badan_hukum, status FROM v_vendor_all";
         return DB::select($sql);
     }
+
+    public static function getVendorById($id)
+{
+    $sql = "SELECT * FROM vendor WHERE idvendor = ?";
+    $result = DB::select($sql, [$id]);
+
+    return $result ? $result[0] : null;
+}
+
+public static function updateStatus($id, $status)
+{
+    $sql = "UPDATE vendor SET status = ? WHERE idvendor = ?";
+    return DB::update($sql, [$status, $id]);
+}
+
 }

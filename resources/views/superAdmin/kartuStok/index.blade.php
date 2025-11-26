@@ -95,7 +95,7 @@
               <th class="text-center" width="15%">Jenis Transaksi</th>
               <th class="text-end" width="10%">Masuk</th>
               <th class="text-end" width="10%">Keluar</th>
-              <th class="text-end" width="10%">Saldo</th>
+              <th class="text-end" width="10%">Stok</th>
               <!-- <th class="text-center" width="5%">ID Trx</th> -->
             </tr>
           </thead>
@@ -106,9 +106,8 @@
                 <td class="text-center align-middle">{{ $no++ }}</td>
                 <td class="align-middle">{{ date('d M Y H:i', strtotime($k->created_at)) }}</td>
                 <td class="align-middle">
-                  <a href="{{ route('superadmin.kartustok.detail', $k->idbarang) }}" class="text-decoration-none">
                     {{ $k->nama_barang }}
-                  </a>
+           
                 </td>
                 <td class="text-center align-middle">{{ $k->nama_satuan }}</td>
                 <td class="text-center align-middle">

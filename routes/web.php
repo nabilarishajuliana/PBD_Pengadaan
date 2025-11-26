@@ -40,48 +40,6 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
-/// ===============================================================
-/// 🏠 Dashboard (auto role redirect handled by controller)
-/// ===============================================================
-// Route::get('/', [DashboardController::class, 'index']);
-
-/// ===============================================================
-/// 👑 SUPER ADMIN AREA (semua akses)
-/// ===============================================================
-// Route::middleware(['auth.custom', 'role:superAdmin'])->group(function () {
-
-//     // Dashboard super admin
-//     Route::get('/superadmin/dashboard', fn() => view('superadmin.dashboard'));
-
-//     // Master Data
-//     Route::get('/barang', [vBarangController::class, 'index']);
-//     Route::get('/barang/all', [vBarangController::class, 'all']);
-
-//     Route::get('/vendor', [VendorController::class, 'index']);
-//     Route::get('/vendor/all', [VendorController::class, 'all']);
-
-//     Route::get('/margin', [MarginPenjualanController::class, 'index']);
-//     Route::get('/margin/all', [MarginPenjualanController::class, 'all']);
-
-//     Route::get('/satuan', [SatuanController::class, 'index']);
-//     Route::get('/satuan/all', [SatuanController::class, 'all']);
-
-//     Route::get('/role', [RoleController::class, 'index']);
-//     Route::get('/user', [UserController::class, 'index']);
-
-//     // Transaksi
-//     Route::get('/pengadaan', [PengadaanController::class, 'index']);
-//     Route::get('/pengadaan/{id}', [PengadaanController::class, 'show'])->whereNumber('id');
-
-//     Route::get('/penerimaan', [PenerimaanController::class, 'index']);
-//     Route::get('/penerimaan/{id}', [PenerimaanController::class, 'show'])->whereNumber('id');
-
-//     Route::get('/penjualan', [PenjualanController::class, 'index']);
-//     Route::get('/penjualan/{id}', [PenjualanController::class, 'show'])->whereNumber('id');
-
-//     Route::get('/retur', [ReturController::class, 'index']);
-//     Route::get('/retur/{id}', [ReturController::class, 'show'])->whereNumber('id');
-// });
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -100,11 +58,18 @@ Route::middleware(['auth.custom', 'role:superAdmin'])
         Route::controller(vBarangController::class)->group(function () {
             Route::get('/barang', 'index')->name('barang');
             Route::get('/barang/all', 'all')->name('barang.all');
+            Route::get('/barang/create', 'create')->name('barang.create');   // ➕ NEW
+            Route::post('/barang/store', 'store')->name('barang.store');     // 💾 NEW
+            Route::get('/barang/{id}/toggle', 'toggleStatus')->name('barang.toggle');
         });
+
 
         Route::controller(VendorController::class)->group(function () {
             Route::get('/vendor', 'index')->name('vendor');
             Route::get('/vendor/all', 'all')->name('vendor.all');
+            Route::get('/vendor/{id}/toggle', [VendorController::class, 'toggleStatus'])
+                ->whereNumber('id')
+                ->name('vendor.toggle');
         });
 
         Route::controller(MarginPenjualanController::class)->group(function () {
@@ -118,7 +83,11 @@ Route::middleware(['auth.custom', 'role:superAdmin'])
         });
 
         Route::get('/role', [RoleController::class, 'index'])->name('role');
-        Route::get('/user', [UserController::class, 'index'])->name('user');
+        Route::controller(UserController::class)->group(function () {
+            Route::get('/user', 'index')->name('user');
+            Route::get('/user/create', 'create')->name('user.create');
+            Route::post('/user/store', 'store')->name('user.store');
+        });
 
         // === TRANSAKSI ===
         Route::controller(PengadaanController::class)->group(function () {
@@ -151,43 +120,74 @@ Route::middleware(['auth.custom', 'role:superAdmin'])
 
         Route::controller(KartuStokController::class)->group(function () {
             Route::get('/kartustok', 'index')->name('kartustok'); // List dengan filter
-            Route::get('/kartustok/rekap', 'rekap')->name('kartustok.rekap'); // Rekap stok per barang
-            Route::get('/kartustok/detail/{idbarang}', 'detail')->whereNumber('idbarang')->name('kartustok.detail'); // Detail per barang
+            // Route::get('/kartustok/rekap', 'rekap')->name('kartustok.rekap'); // Rekap stok per barang
+            // Route::get('/kartustok/detail/{idbarang}', 'detail')->whereNumber('idbarang')->name('kartustok.detail'); // Detail per barang
         });
     });
 
+// Route::middleware(['auth.custom', 'role:admin'])
+//     ->prefix('admin')
+//     ->as('admin.')
+//     ->group(function () {
+//         Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
+
+       
+//     });
+
+    /// ===============================================================
+/// 🧑‍💼 ADMIN AREA
+/// ===============================================================
 Route::middleware(['auth.custom', 'role:admin'])
     ->prefix('admin')
     ->as('admin.')
     ->group(function () {
+
+        // DASHBOARD
         Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
 
-        Route::controller(vBarangController::class)->group(function () {
-            Route::get('/barang', 'index')->name('barang');
-            Route::get('/barang/all', 'all')->name('barang.all');
-        });
-
-        // === TRANSAKSI ===
+        // ==========================================================
+        // 📦 PENGADAAN
+        // ==========================================================
         Route::controller(PengadaanController::class)->group(function () {
             Route::get('/pengadaan', 'index')->name('pengadaan');
+            Route::get('/pengadaan/create', 'create')->name('pengadaan.create');
+            Route::post('/pengadaan/store', 'store')->name('pengadaan.store');
             Route::get('/pengadaan/{id}', 'show')->whereNumber('id')->name('pengadaan.show');
         });
 
+        // ==========================================================
+        // 📥 PENERIMAAN
+        // ==========================================================
         Route::controller(PenerimaanController::class)->group(function () {
             Route::get('/penerimaan', 'index')->name('penerimaan');
+            Route::get('/penerimaan/create', 'create')->name('penerimaan.create');
+
+            Route::post('/penerimaan/store', 'store')->name('penerimaan.store');
             Route::get('/penerimaan/{id}', 'show')->whereNumber('id')->name('penerimaan.show');
         });
 
+        // ==========================================================
+        // 💸 PENJUALAN
+        // ==========================================================
         Route::controller(PenjualanController::class)->group(function () {
             Route::get('/penjualan', 'index')->name('penjualan');
+            Route::get('/penjualan/create', 'create')->name('penjualan.create');
+            Route::post('/penjualan/store', 'store')->name('penjualan.store');
             Route::get('/penjualan/{id}', 'show')->whereNumber('id')->name('penjualan.show');
         });
 
+        // ==========================================================
+        // ↩️ RETUR
+        // ==========================================================
         Route::controller(ReturController::class)->group(function () {
             Route::get('/retur', 'index')->name('retur');
+            Route::get('/retur/create', 'create')->name('retur.create');
+            Route::post('/retur/store', 'store')->name('retur.store');
             Route::get('/retur/{id}', 'show')->whereNumber('id')->name('retur.show');
         });
+
     });
+
 // -------------------------------------------------------------------
 
 // Route::get('/barang', [vBarangController::class, 'index']);     // Barang aktif

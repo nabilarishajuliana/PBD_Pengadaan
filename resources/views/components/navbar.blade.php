@@ -71,7 +71,7 @@
             👤 {{ session('username', 'User') }}
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item disabled">Role: {{ session('nama_role', 'Admin') }}</a></li>
+            <li><a class="dropdown-item disabled">Role: {{ session('role', 'Admin') }}</a></li>
             <li>
               <hr class="dropdown-divider">
             </li>

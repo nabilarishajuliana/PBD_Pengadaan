@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class VBarang extends Model
 {
- protected $table = 'v_barang';
+    protected $table = 'v_barang';
     public $timestamps = false;
 
     // Barang aktif saja
@@ -26,4 +26,27 @@ class VBarang extends Model
                 FROM v_barang_all";
         return DB::select($sql);
     }
+
+    public static function insertBarang($nama, $jenis, $idsatuan, $status, $harga)
+    {
+        $sql = "INSERT INTO barang (nama, jenis, idsatuan, status, harga)
+            VALUES (?, ?, ?, ?, ?)";
+
+        return DB::insert($sql, [$nama, $jenis, $idsatuan, $status, $harga]);
+    }
+
+    public static function getBarangById($id)
+{
+    $sql = "SELECT * FROM barang WHERE idbarang = ?";
+    $result = DB::select($sql, [$id]);
+
+    return $result ? $result[0] : null;
+}
+
+public static function updateStatus($id, $status)
+{
+    $sql = "UPDATE barang SET status = ? WHERE idbarang = ?";
+    return DB::update($sql, [$status, $id]);
+}
+
 }

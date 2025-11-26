@@ -10,13 +10,8 @@
             background: #f7f9fb;
             font-family: 'Poppins', sans-serif;
         }
-        .container {
-            margin-top: 40px;
-        }
-        .card {
-            border-radius: 10px;
-            border: none;
-        }
+        .container { margin-top: 40px; }
+        .card { border-radius: 10px; border: none; }
         .badge-admin {
             background: #17a2b8;
             color: #fff;
@@ -41,6 +36,10 @@
             font-weight: 600;
             font-size: 1.2rem;
         }
+        .btn-add {
+            font-weight: 600;
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
@@ -48,9 +47,22 @@
 @include('components.navbar')
 
 <div class="container">
-    <h2 class="mb-4 text-center">
-        👥 Daftar User
-    </h2>
+
+    <!-- Header + Tombol Tambah -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="mb-0">👥 Daftar User</h2>
+
+        <a href="{{ route('superadmin.user.create') }}" class="btn btn-primary btn-add">
+            ➕ Tambah User
+        </a>
+    </div>
+
+    <!-- Alert Success -->
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <!-- TABLE -->
     <div class="card shadow-sm">
@@ -72,6 +84,7 @@
                             <td class="align-middle">
                                 <strong class="text-primary">{{ $u->username }}</strong>
                             </td>
+
                             <td class="text-center align-middle">
                                 @if(strtolower($u->nama_role) == 'superadmin')
                                     <span class="badge-superadmin">👑 SuperAdmin</span>
@@ -79,7 +92,6 @@
                                     <span class="badge-admin">🔧 Admin</span>
                                 @endif
                             </td>
-                         
                         </tr>
                         @empty
                         <tr>
@@ -97,8 +109,8 @@
     @if(count($user) > 0)
     <div class="alert alert-info mt-3">
         <strong>ℹ️ Keterangan:</strong><br>
-        • <span class="badge-superadmin">SuperAdmin</span> = Akses penuh ke semua fitur sistem<br>
-        • <span class="badge-admin">Admin</span> = Akses terbatas untuk transaksi harian<br>
+        • <span class="badge-superadmin">SuperAdmin</span> = akses penuh sistem<br>
+        • <span class="badge-admin">Admin</span> = akses transaksi harian<br>
         • Total User: <strong>{{ count($user) }}</strong>
     </div>
     @endif
