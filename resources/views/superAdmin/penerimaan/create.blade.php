@@ -71,7 +71,7 @@
                         data-vendor="{{ $pg->nama_vendor }}"
                         data-tanggal="{{ date('d M Y', strtotime($pg->timestamp)) }}"
                         data-total="{{ number_format($pg->total_nilai,0,',','.') }}">
-                  #{{ $pg->idpengadaan }} - {{ $pg->nama_vendor }} ({{ date('d M Y', strtotime($pg->timestamp)) }})
+                  #P{{ $pg->idpengadaan }} - {{ $pg->nama_vendor }} ({{ date('d M Y', strtotime($pg->timestamp)) }})
                 </option>
               @endforeach
             </select>

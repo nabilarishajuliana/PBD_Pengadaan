@@ -24,22 +24,45 @@ class vendorcontroller extends Controller
     }
 
     public function toggleStatus($id)
-{
-    // 1. Ambil data vendor dari tabel asli via model
-    $vendor = VVendor::getVendorById($id);
+    {
+        // 1. Ambil data vendor dari tabel asli via model
+        $vendor = VVendor::getVendorById($id);
 
-    if (!$vendor) {
-        return back()->with('error', 'Vendor tidak ditemukan.');
+        if (!$vendor) {
+            return back()->with('error', 'Vendor tidak ditemukan.');
+        }
+
+        // 2. Flip status: A => N, N => A
+        $newStatus = $vendor->status === 'A' ? 'N' : 'A';
+
+        // 3. Update status
+        VVendor::updateStatus($id, $newStatus);
+
+        // 4. Redirect balik
+        return back()->with('success', 'Status vendor berhasil diperbarui.');
     }
 
-    // 2. Flip status: A => N, N => A
-    $newStatus = $vendor->status === 'A' ? 'N' : 'A';
+    // FORM CREATE
+    public function create()
+    {
+        return view('superadmin.vendor.create');
+    }
 
-    // 3. Update status
-    VVendor::updateStatus($id, $newStatus);
+    // SIMPAN VENDOR BARU
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nama_vendor' => 'required|min:3|max:100',
+            'badan_hukum' => 'required',
+        ]);
 
-    // 4. Redirect balik
-    return back()->with('success', 'Status vendor berhasil diperbarui.');
-}
+        // Insert vendor baru
+        VVendor::insertVendor(
+            $request->nama_vendor,
+            $request->badan_hukum
+        );
 
+        return redirect()->route('superadmin.vendor')
+            ->with('success', 'Vendor berhasil ditambahkan!');
+    }
 }

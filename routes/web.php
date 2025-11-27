@@ -70,6 +70,8 @@ Route::middleware(['auth.custom', 'role:superAdmin'])
             Route::get('/vendor/{id}/toggle', [VendorController::class, 'toggleStatus'])
                 ->whereNumber('id')
                 ->name('vendor.toggle');
+            Route::get('/vendor/create', 'create')->name('vendor.create'); // ➕
+            Route::post('/vendor/store', 'store')->name('vendor.store');   // 💾
         });
 
         Route::controller(MarginPenjualanController::class)->group(function () {
@@ -131,10 +133,10 @@ Route::middleware(['auth.custom', 'role:superAdmin'])
 //     ->group(function () {
 //         Route::get('/dashboard', [DashboardController::class, 'admin'])->name('dashboard');
 
-       
+
 //     });
 
-    /// ===============================================================
+/// ===============================================================
 /// 🧑‍💼 ADMIN AREA
 /// ===============================================================
 Route::middleware(['auth.custom', 'role:admin'])
@@ -185,7 +187,6 @@ Route::middleware(['auth.custom', 'role:admin'])
             Route::post('/retur/store', 'store')->name('retur.store');
             Route::get('/retur/{id}', 'show')->whereNumber('id')->name('retur.show');
         });
-
     });
 
 // -------------------------------------------------------------------

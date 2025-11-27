@@ -50,7 +50,7 @@
         <tbody>
           @forelse($pengadaan as $p)
             <tr>
-              <td class="align-middle text-center">{{ $p->idpengadaan }}</td>
+              <td class="align-middle text-center">P{{ $p->idpengadaan }}</td>
               <td class="align-middle">{{ date('d M Y H:i', strtotime($p->timestamp)) }}</td>
               <td class="align-middle">{{ $p->nama_vendor }}</td>
               <td class="align-middle text-center">

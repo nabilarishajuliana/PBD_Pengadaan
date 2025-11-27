@@ -38,4 +38,12 @@ public static function updateStatus($id, $status)
     return DB::update($sql, [$status, $id]);
 }
 
+public static function insertVendor($nama_vendor, $badan_hukum)
+{
+    $sql = "INSERT INTO vendor (nama_vendor, badan_hukum, status)
+            VALUES (?, ?, 'A')";  // status langsung aktif
+    return DB::insert($sql, [$nama_vendor, $badan_hukum]);
+}
+
+
 }

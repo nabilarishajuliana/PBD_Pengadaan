@@ -19,7 +19,7 @@
 
 <div class="container">
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <h3>📦 Detail Pengadaan #{{ $header->idpengadaan }}</h3>
+    <h3>📦 Detail Pengadaan #P{{ $header->idpengadaan }}</h3>
     <div>
       <a href="{{ route('superadmin.pengadaan') }}" class="btn btn-secondary">⬅️ Kembali</a>
     </div>

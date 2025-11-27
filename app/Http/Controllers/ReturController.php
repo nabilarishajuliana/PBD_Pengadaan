@@ -11,7 +11,7 @@ class ReturController extends Controller
     public function index()
     {
         $retur = Retur::getAllRetur();
-        return view('retur.index', compact('retur'));
+        return view('superadmin.retur.index', compact('retur'));
     }
 
     // Tampilkan detail retur berdasarkan id
@@ -19,6 +19,6 @@ class ReturController extends Controller
     {
         $detail = DetailRetur::getByReturId($id);
         $header = Retur::getById($id);
-        return view('retur.detail', compact('detail', 'header', 'id'));
+        return view('superadmin.retur.detail', compact('detail', 'header', 'id'));
     }
 }

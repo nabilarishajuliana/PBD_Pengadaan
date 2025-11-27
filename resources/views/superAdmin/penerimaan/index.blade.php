@@ -55,11 +55,11 @@
         <tbody>
           @forelse($penerimaan as $p)
             <tr>
-              <td class="align-middle text-center">{{ $p->idpenerimaan }}</td>
+              <td class="align-middle text-center">T{{ $p->idpenerimaan }}</td>
               <td class="align-middle">{{ date('d M Y H:i', strtotime($p->created_at)) }}</td>
               <td class="align-middle text-center">
                 <a href="{{ route('superadmin.pengadaan.show', $p->idpengadaan) }}" class="text-decoration-none">
-                  #{{ $p->idpengadaan }}
+                  #P{{ $p->idpengadaan }}
                 </a>
               </td>
               <td class="align-middle">{{ $p->nama_vendor }}</td>

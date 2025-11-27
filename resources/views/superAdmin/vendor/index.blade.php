@@ -47,6 +47,12 @@
             font-weight: 600;
             font-size: 1.2rem;
         }
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
     </style>
 </head>
 
@@ -55,10 +61,16 @@
     @include('components.navbar')
 
     <div class="container">
-        <h2 class="mb-4 text-center">
-            👥 Daftar Vendor
-        </h2>
+       
+        <div class="panel-header">
+            <h2 class="m-0">
+                👥 Daftar Vendor {{ $mode == 'all' ? '(Semua)' : '(Aktif)' }}
+            </h2>
 
+            <a href="{{ route('superadmin.vendor.create') }}" class="btn btn-primary btn-add">
+                ➕ Tambah Vendor
+            </a>
+        </div>
 
         <!-- TOMBOL TOGGLE -->
         <div class="text-center mb-3">
@@ -95,7 +107,7 @@
                                 <td class="align-middle">
                                     <strong class="text-primary">{{ $v->nama_vendor }}</strong>
                                 </td>
-                                <td class="align-middle">
+                                <td class="text-center align-middle">
                                     <strong class="text-primary">{{ $v->badan_hukum }}</strong>
                                 </td>
                                 <td class="text-center align-middle">

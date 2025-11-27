@@ -57,7 +57,9 @@ class PenerimaanController extends Controller
             'idpengadaan' => 'required|integer',
             'items' => 'required|array|min:1',
             'items.*.idbarang' => 'required|integer',
-            'items.*.jumlah_terima' => 'required|integer|min:1',
+            // 'items.*.jumlah_terima' => 'required|integer|min:1',
+            'items.*.jumlah_terima' => 'required|integer|min:0',
+
             'items.*.harga_satuan_terima' => 'required|integer|min:1',
         ], [
             'idpengadaan.required' => 'Pengadaan harus dipilih',

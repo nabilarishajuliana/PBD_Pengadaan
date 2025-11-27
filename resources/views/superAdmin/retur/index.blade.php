@@ -45,7 +45,7 @@
               <td class="align-middle text-center">{{ $r->nama_user }}</td>
               <td class="align-middle text-center">{{ date('Y-m-d H:i', strtotime($r->created_at)) }}</td>
               <td class="align-middle text-center">
-                <a href="{{ url('/retur/'.$r->idretur) }}" class="btn btn-sm btn-primary">Lihat Detail</a>
+                <a href="{{ url('superadmin/retur/'.$r->idretur) }}" class="btn btn-sm btn-primary">Lihat Detail</a>
               </td>
             </tr>
           @empty
@@ -58,5 +58,7 @@
     </div>
   </div>
 </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

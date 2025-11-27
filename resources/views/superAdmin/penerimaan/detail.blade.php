@@ -18,7 +18,7 @@
 
 <div class="container">
   <div class="d-flex justify-content-between align-items-center mb-3">
-    <h3>📦 Detail Penerimaan #{{ $header->idpenerimaan }}</h3>
+    <h3>📦 Detail Penerimaan #T{{ $header->idpenerimaan }}</h3>
     <div>
       <a href="{{ route('superadmin.penerimaan') }}" class="btn btn-secondary">⬅️ Kembali</a>
     </div>
@@ -30,7 +30,7 @@
         <div class="col-md-3">
           <strong>📋 ID Pengadaan:</strong><br>
           <a href="{{ route('superadmin.pengadaan.show', $header->idpengadaan) }}" class="text-primary text-decoration-none">
-            #{{ $header->idpengadaan }}
+            #P{{ $header->idpengadaan }}
           </a>
         </div>
         <div class="col-md-3">
